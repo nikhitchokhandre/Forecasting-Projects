@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Oil Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<style>
+    body {
+        background-image: url('https://www.fool.com.au/wp-content/uploads/2018/11/oil-price-increase.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+</style>
+<div>
+
+    <center>
+
+        <body>
+            <h1>Oil Price Prediction</h1>
+            <form method="POST" action="{{ url_for('predict') }}">
+                <label for="start_date">Start Date:</label>
+                <input type="date" id="start_date" name="start_date" required><br>
+
+                <label for="end_date">End Date:</label>
+                <input type="date" id="end_date" name="end_date" required><br>
+
+                <input type="submit" value="Predict">
+            </form>
+
+
+            {% if table %}
+            <div>
+                <table class="table-danger">
+                    <h2>Prediction Results</h2>
+                    {{ table|safe }}
+                </table>
+            </div>
+            {% endif %}
+
+            {% if chart %}
+            <div class="chart-container">
+                <h2>Prediction Chart</h2>
+                {{ chart|safe }}
+            </div>
+            {% endif %}
+        </body>
+    </center>
+</div>
+
+</html>
